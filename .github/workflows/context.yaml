@@ -1,0 +1,8 @@
+name: Lab-Context
+on: [push]
+jobs:
+    sample-runner-ctx:
+        runs-on: self-hosted
+        steps:
+          - name: runner-info    
+            run: "Runnner name : {runner.name}"
