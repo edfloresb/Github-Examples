@@ -13,4 +13,4 @@ jobs:
         runs-on: self-hosted
         steps:
             -   name: echo-job-name
-                run: echo "Msg from job one [$JOB_ONE_MSG]"
+                run: echo "Msg from job one [${{ env.JOB_ONE_MSG}}]"
