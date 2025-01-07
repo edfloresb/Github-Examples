@@ -6,3 +6,5 @@ jobs:
         steps:
           - name: runner-info    
             run: "echo Runnner name : ${{runner.name}}"
+          - name: gh-actor-info    
+            run: "echo GH Actor name : ${{github.actor}}"
