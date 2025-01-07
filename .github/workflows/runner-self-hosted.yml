@@ -13,27 +13,11 @@ jobs:
     env:
       MY_NAME: "Mona The Octocat"
     steps:
-      - name: GroupLogMsg
+      - name: Set the value in bash
+        id: step_one
         run: |
-          echo "::group::Labgroup"
-          echo "This is one line"
-          echo "And this is another line"
-          echo "::endgroup::"
-      - name: SetEnvVar
-        run: |
-          echo "LAB_ENV_VAR="Hi Github"" >> $GITHUB_ENV
-      - name: PrintEnvVar
-        run: |
-          echo $LAB_VAR
-      - name: NoticeMsg
-        run: |
-          echo "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
-      - id: sets-a-secret
-        name: Generate, mask, and output a secret
-        run: |
-          the_secret=$((RANDOM))
-          echo "::add-mask::$the_secret"
-          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
-      - name: Use that secret output (protected by a mask)
-        run: |
-          echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
+          {
+            echo 'JSON_RESPONSE<<EOF'
+            curl https://example.com
+            echo EOF
+          } >> "$GITHUB_ENV"
