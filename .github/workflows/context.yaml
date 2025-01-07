@@ -5,6 +5,8 @@ jobs:
         runs-on: self-hosted
         steps:
           - name: runner-info    
-            run: "echo Runnner name : ${{runner.name}}"
+            run: |
+              echo "Runnner name : ${{runner.name}}"
+              echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
           - name: gh-actor-info    
             run: "echo GH Actor name : ${{github.actor}}"
