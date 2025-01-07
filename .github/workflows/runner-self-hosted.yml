@@ -10,6 +10,8 @@ on:
 jobs:
   workflow-cmds-job:
     runs-on: self-hosted
+    env:
+      MY_NAME: "Mona The Octocat"
     steps:
       - name: GroupLogMsg
         run: |
@@ -26,3 +28,12 @@ jobs:
       - name: NoticeMsg
         run: |
           echo "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+      - id: sets-a-secret
+        name: Generate, mask, and output a secret
+        run: |
+          the_secret=$((RANDOM))
+          echo "::add-mask::$the_secret"
+          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+      - name: Use that secret output (protected by a mask)
+        run: |
+          echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
