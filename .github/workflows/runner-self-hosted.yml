@@ -19,7 +19,7 @@ jobs:
           echo "::endgroup::"
       - name: SetEnvVar
         run: |
-          echo "LAB_ENV_VAR="Hi Github"" >> $LAB_VAR
+          echo "LAB_ENV_VAR=Hi_Github" >> $LAB_VAR
       - name: PrintEnvVar
         run: |
           echo $LAB_VAR
