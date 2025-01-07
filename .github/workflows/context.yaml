@@ -5,4 +5,4 @@ jobs:
         runs-on: self-hosted
         steps:
           - name: runner-info    
-            run: "echo Runnner name : {runner.name}"
+            run: "echo Runnner name : ${{runner.name}}"
