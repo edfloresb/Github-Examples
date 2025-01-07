@@ -1,6 +1,6 @@
 # If you don't create a self-hosted runner you will see:
 # Waiting for a runner to pick up this job...
-name: Self-hosted Runner Workflow
+name: Self-hosted Mac & Workflow commands
 
 on:
   push:
@@ -8,10 +8,12 @@ on:
       - main
 
 jobs:
-  example-job:
+  workflow-cmds-job:
     runs-on: self-hosted
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      - name: Run a one-line script
-        run: echo "Hello from a self-hosted runner!"
+      - name: GroupLogMsg
+        run: |
+          echo "::group::Labgroup"
+          echo "This is one line"
+          echo "And this is another line"
+          echo "::endgroup::"
