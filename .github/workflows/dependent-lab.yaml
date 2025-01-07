@@ -16,6 +16,6 @@ jobs:
         steps:
             -   name: echo-job-name
                 env:
-                    MSG: ${{steps.firstJob.outputs.msg}}
+                    MSG: ${{needs.firstJob.outputs.msg}}
                 run: |
                     echo "$MSG"
