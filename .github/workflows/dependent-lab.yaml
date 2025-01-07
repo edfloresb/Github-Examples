@@ -5,10 +5,12 @@ jobs:
         runs-on: self-hosted
         steps:
             -   name: echo-job-name
-                run: echo first-job
+                run: |
+                    echo "JOB_ONE_MSG=wait" >> $GITHUB_ENV
 
     second-job:
+        needs: first-job
         runs-on: self-hosted
         steps:
             -   name: echo-job-name
-                run: echo second-job
+                run: echo "Msg from job one [$JOB_ONE_MSG]"
