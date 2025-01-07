@@ -1,0 +1,14 @@
+name: Dependent-jobs-lab
+on: [push]
+jobs:
+    first-job:
+        runs-on: self-hosted
+        steps:
+            -   name: echo-job-name
+                run: echo first-job
+
+    second-job:
+        runs-on: self-hosted
+        steps:
+            -   name: echo-job-name
+                run: echo second-job
