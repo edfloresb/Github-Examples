@@ -1,16 +1,21 @@
 name: Dependent-jobs-lab
 on: [push]
 jobs:
-    first-job:
+    firstJob:
         runs-on: self-hosted
+        outputs:
+            msg: ${{ steps.job-msg.outputs.msg }}
         steps:
-            -   name: echo-job-name
-                run: |
-                    echo "JOB_ONE_MSG=wait" >> $GITHUB_ENV
+            -   id: job-msg
+                name: echo-job-name
+                run: echo "msg=wait" >> "$GITHUB_OUTPUT"
 
     second-job:
-        needs: first-job
+        needs: firstJob
         runs-on: self-hosted
         steps:
             -   name: echo-job-name
-                run: echo "Msg from job one [${{ env.JOB_ONE_MSG}}]"
+                env:
+                    MSG: ${{steps.firstJob.outputs.msg}}
+                run: |
+                    echo "$MSG"
