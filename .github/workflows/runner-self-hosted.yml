@@ -17,3 +17,9 @@ jobs:
           echo "This is one line"
           echo "And this is another line"
           echo "::endgroup::"
+      - name: SetEnvVar
+        run: |
+          echo "LAB_ENV_VAR="Hi Github" >> $LAB_VAR
+      - name: PrintEnvVar
+        run: |
+          echo $LAB_VAR
